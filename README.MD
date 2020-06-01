@@ -1,4 +1,4 @@
-# Unit Tests
+# Integration Tests
 Projeto contendo testes de integração com uma API externa.
 
 Este projeto tem como objetivo realizar o exercício 02.
