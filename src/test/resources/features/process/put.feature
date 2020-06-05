@@ -25,3 +25,8 @@ Feature: Put Process
     And user should see natureza with value equal "COVID-19"
     And user should see partes with value equal "EUA x China"
     And user should see assistente_social with value equal "Pedro"
+
+  Scenario: User update a non-existing process
+    Given the user update "numero_processo" with value "4000"
+    When the user clicks on button to update an invalid id process
+    Then user should see "not found" message

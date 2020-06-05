@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -14,7 +13,7 @@ public class CrudSteps {
     }
 
     @And("^user informs (.*) with value equal \"([^\"]*)\"$")
-    public void userInformsFieldWithValueEqual(String field, String value) throws Throwable {
+    public void userInformsFieldWithValueEqual(String field, String value) {
         if(value.equals("#null#")) {
             value = null;
         }
@@ -42,5 +41,16 @@ public class CrudSteps {
     @And("^user clicks on delete button$")
     public void userClicksOnDeleteButton() {
         RESTSupport.executeDelete(ProcessAPI.getEndPoint() + ProcessAPI.getLastId() + ".json");
+    }
+
+    @Given("^the user update \"([^\"]*)\" with value \"([^\"]*)\"$")
+    public void theUserUpdateWithValue(String field, String value) {
+        ProcessAPI.addFields(field, value);
+    }
+
+    @When("^the user clicks on button to update an invalid id process$")
+    public void theUserClicksOnButtonToUpdateAnInvalidIdProcess() {
+        RESTSupport.executePut(ProcessAPI.getEndPoint() + "900000", ProcessAPI.getFields());
+
     }
 }

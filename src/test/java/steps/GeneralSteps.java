@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.pt.Então;
@@ -11,7 +10,7 @@ import support.RESTSupport;
 public class GeneralSteps {
     @Then("^user should see \"([^\"]*)\" message$")
     @Então("^o usuário deveria ver a mensagem de \"([^\"]*)\"$")
-    public void userShouldSeeMessage(String type) throws Throwable {
+    public void userShouldSeeMessage(String type) {
         LazyMap messageJson = new LazyMap();
         messageJson.put("save with success", 201);
         messageJson.put("success", 200);
@@ -23,7 +22,7 @@ public class GeneralSteps {
     }
 
     @And("^user should see (.*) with value equal \"([^\"]*)\"$")
-    public void userShouldSeeFieldWithValue(String field, String value) throws Throwable {
+    public void userShouldSeeFieldWithValue(String field, String value) {
         if(value.equals("#null#")) {
             value = null;
         }

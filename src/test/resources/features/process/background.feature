@@ -1,7 +1,7 @@
-@get
-Feature: Get Process
+@background
+Feature: Using Background
 
-  Scenario: User show a register
+  Background:
     Given user would like to insert a new process
     And user informs vara with value equal "50"
     And user informs numero_processo with value equal "4"
@@ -15,6 +15,14 @@ Feature: Get Process
     And user informs data_agendamento with value equal "01/07/2020"
     And user informs status with value equal "Aguardando"
     And user informs observacao with value equal "Em analise"
+
+
+  Scenario: User want to insert a new process
+    When user clicks on save button
+    Then user should see "save with success" message
+
+
+  Scenario: User show a register
     When user clicks on save button
     And user wants to see process information registered
     Then user should see "success" message
@@ -31,3 +39,15 @@ Feature: Get Process
     And user should see status with value equal "Aguardando"
     And user should see observacao with value equal "Em analise"
 
+
+  Scenario: User want to update a register
+    When user clicks on save button
+    And user informs natureza with value equal "Gripe Asiatica"
+    And user informs partes with value equal "Mundo x China"
+    And user informs assistente_social with value equal "ONU"
+    And user clicks on save button again
+    And user wants to see process information registered
+    Then user should see "success" message
+    And user should see natureza with value equal "Gripe Asiatica"
+    And user should see partes with value equal "Mundo x China"
+    And user should see assistente_social with value equal "ONU"
